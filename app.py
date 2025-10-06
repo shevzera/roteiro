@@ -17,7 +17,6 @@ st.markdown("""
         border-radius: 10px;
         border-left: 4px solid #FF0050;
         margin: 10px 0;
-        position: relative;
     }
     .prompt-box {
         background-color: #2D2D2D;
@@ -32,19 +31,6 @@ st.markdown("""
         border-radius: 10px;
         border-left: 4px solid #00FF88;
         margin: 10px 0;
-    }
-    .copy-btn {
-        background-color: #FF0050;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 12px;
-        margin: 5px 0;
-    }
-    .copy-btn:hover {
-        background-color: #E6004A;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -117,29 +103,29 @@ SCRIPT|||
 [Script completo aqui em inglês, formatado para ElevenLabs com marcações [PAUSE], [EMPHASIS], [BREATH], etc. Gancho viral nos primeiros 3 segundos. Linguagem simples e conversacional. DEVE TER 1300-1500 CARACTERES]
 
 PROMPTS|||
-0-5s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+0-5s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting (ex: golden hour, neon, harsh shadows), camera angle preciso (ex: low angle, dutch tilt, POV), mood/atmosfera, paleta de cores RGB específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-5-10s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+5-10s: Cinematic [descrição ULTRA detalhada da cena com todos os detalhes: composição, lighting, angle, mood, cores, textura, movimento]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-10-15s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+10-15s: Cinematic [descrição ULTRA detalhada da cena com todos os detalhes: composição, lighting, angle, mood, cores, textura, movimento]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-15-20s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+15-20s: Cinematic [descrição ULTRA detalhada da cena com todos os detalhes: composição, lighting, angle, mood, cores, textura, movimento]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-20-25s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+20-25s: Cinematic [descrição ULTRA detalhada da cena com todos os detalhes: composição, lighting, angle, mood, cores, textura, movimento]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-25-30s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+25-30s: Cinematic [descrição ULTRA detalhada da cena com todos os detalhes: composição, lighting, angle, mood, cores, textura, movimento]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-30-35s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+30-35s: Cinematic [descrição ULTRA detalhada da cena com todos os detalhes: composição, lighting, angle, mood, cores, textura, movimento]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-35-40s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+35-40s: Cinematic [descrição ULTRA detalhada da cena com todos os detalhes: composição, lighting, angle, mood, cores, textura, movimento]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-40-45s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+40-45s: Cinematic [descrição ULTRA detalhada da cena com todos os detalhes: composição, lighting, angle, mood, cores, textura, movimento]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-45-50s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+45-50s: Cinematic [descrição ULTRA detalhada da cena com todos os detalhes: composição, lighting, angle, mood, cores, textura, movimento]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-50-55s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+50-55s: Cinematic [descrição ULTRA detalhada da cena com todos os detalhes: composição, lighting, angle, mood, cores, textura, movimento]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-55-60s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+55-60s: Cinematic [descrição ULTRA detalhada da cena com todos os detalhes: composição, lighting, angle, mood, cores, textura, movimento]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
 DESCRIPTION|||
 [Descrição de 150-200 caracteres para TikTok, engajante, com call-to-action americano]
@@ -164,29 +150,29 @@ SCRIPT|||
 [Script completo aqui em inglês, formatado para ElevenLabs com marcações [PAUSE], [EMPHASIS], [BREATH], etc. Gancho viral nos primeiros 3 segundos. Linguagem simples e conversacional para público americano. DEVE TER 1300-1500 CARACTERES]
 
 PROMPTS|||
-0-5s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting (ex: golden hour, neon, dramatic shadows), camera angle preciso (ex: low angle, dutch tilt, POV), mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico se aplicável: film noir, cyberpunk, vintage 70s, etc].
+0-5s: Cinematic [descrição ULTRA detalhada da cena: composição específica (ex: rule of thirds, centered, asymmetric), tipo de lighting preciso (ex: golden hour, neon glow, rim lighting, dramatic shadows), camera angle específico (ex: low angle shot, bird's eye view, dutch tilt, over-the-shoulder), mood/atmosfera clara (ex: tense, mysterious, nostalgic), paleta de cores específica (ex: warm amber tones, cold blue hues, high contrast black and white), texturas visíveis (ex: grainy film, smooth digital, rough concrete), movimento de câmera (ex: slow zoom in, dolly push, handheld shake)]. Hyper-realistic, 4K quality, professional color grading, cinematic composition.
 
-5-10s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+5-10s: Cinematic [mesma estrutura ultra detalhada com TODOS os elementos visuais específicos]. Hyper-realistic, 4K quality, professional color grading, cinematic composition.
 
-10-15s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+10-15s: Cinematic [mesma estrutura ultra detalhada com TODOS os elementos visuais específicos]. Hyper-realistic, 4K quality, professional color grading, cinematic composition.
 
-15-20s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+15-20s: Cinematic [mesma estrutura ultra detalhada com TODOS os elementos visuais específicos]. Hyper-realistic, 4K quality, professional color grading, cinematic composition.
 
-20-25s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+20-25s: Cinematic [mesma estrutura ultra detalhada com TODOS os elementos visuais específicos]. Hyper-realistic, 4K quality, professional color grading, cinematic composition.
 
-25-30s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+25-30s: Cinematic [mesma estrutura ultra detalhada com TODOS os elementos visuais específicos]. Hyper-realistic, 4K quality, professional color grading, cinematic composition.
 
-30-35s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+30-35s: Cinematic [mesma estrutura ultra detalhada com TODOS os elementos visuais específicos]. Hyper-realistic, 4K quality, professional color grading, cinematic composition.
 
-35-40s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+35-40s: Cinematic [mesma estrutura ultra detalhada com TODOS os elementos visuais específicos]. Hyper-realistic, 4K quality, professional color grading, cinematic composition.
 
-40-45s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+40-45s: Cinematic [mesma estrutura ultra detalhada com TODOS os elementos visuais específicos]. Hyper-realistic, 4K quality, professional color grading, cinematic composition.
 
-45-50s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+45-50s: Cinematic [mesma estrutura ultra detalhada com TODOS os elementos visuais específicos]. Hyper-realistic, 4K quality, professional color grading, cinematic composition.
 
-50-55s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+50-55s: Cinematic [mesma estrutura ultra detalhada com TODOS os elementos visuais específicos]. Hyper-realistic, 4K quality, professional color grading, cinematic composition.
 
-55-60s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+55-60s: Cinematic [mesma estrutura ultra detalhada com TODOS os elementos visuais específicos]. Hyper-realistic, 4K quality, professional color grading, cinematic composition.
 
 DESCRIPTION|||
 [Descrição de 150-200 caracteres para TikTok, engajante e clicável, com call-to-action americano forte]
@@ -244,5 +230,31 @@ DESCRIPTION|||
         
         # ===== SCRIPT COM BOTÃO DE COPIAR =====
         st.markdown("### 🎙️ SCRIPT (ElevenLabs Ready)")
+        st.markdown('<div class="script-box">', unsafe_allow_html=True)
+        st.markdown(script.replace("[PAUSE]", "**[PAUSE]**").replace("[EMPHASIS]", "**[EMPHASIS]**").replace("[BREATH]", "**[BREATH]**"))
+        st.markdown('</div>', unsafe_allow_html=True)
         
-        col_script, col_copy
+        # Botão copiar script
+        st.code(script, language="text")
+        
+        # ===== IMAGE PROMPTS COM BOTÕES =====
+        st.markdown("### 🎨 IMAGE PROMPTS (Sincronizados por Tempo)")
+        
+        for idx, prompt_line in enumerate(prompts_list):
+            st.markdown(f"**{prompt_line.split(':')[0]}:**")
+            prompt_content = ':'.join(prompt_line.split(':')[1:]).strip()
+            
+            # Box com o prompt
+            st.markdown('<div class="prompt-box">', unsafe_allow_html=True)
+            st.markdown(prompt_content)
+            st.markdown('</div>', unsafe_allow_html=True)
+            
+            # Botão copiar cada prompt
+            st.code(prompt_content, language="text")
+            st.markdown("---")
+        
+        # ===== DESCRIPTION + HASHTAGS JUNTOS =====
+        st.markdown("### 📝 DESCRIPTION + HASHTAGS (Copy & Paste para TikTok)")
+        st.markdown('<div class="description-box">', unsafe_allow_html=True)
+        st.markdown(description_full)
+        st.markdown('</div>', unsafe
