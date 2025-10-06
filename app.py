@@ -235,26 +235,28 @@ DESCRIPTION|||
         st.markdown('</div>', unsafe_allow_html=True)
         
         # Botão copiar script
-        st.code(script, language="text")
+        if st.button("📋 Copiar Script", key="copy_script"):
+            st.code(script, language="text")
+        
+        st.markdown("---")
         
         # ===== IMAGE PROMPTS COM BOTÕES =====
         st.markdown("### 🎨 IMAGE PROMPTS (Sincronizados por Tempo)")
         
         for idx, prompt_line in enumerate(prompts_list):
-            st.markdown(f"**{prompt_line.split(':')[0]}:**")
-            prompt_content = ':'.join(prompt_line.split(':')[1:]).strip()
-            
-            # Box com o prompt
-            st.markdown('<div class="prompt-box">', unsafe_allow_html=True)
-            st.markdown(prompt_content)
-            st.markdown('</div>', unsafe_allow_html=True)
-            
-            # Botão copiar cada prompt
-            st.code(prompt_content, language="text")
-            st.markdown("---")
+            if ':' in prompt_line:
+                timestamp = prompt_line.split(':')[0]
+                prompt_content = ':'.join(prompt_line.split(':')[1:]).strip()
+                
+                st.markdown(f"**⏱️ {timestamp}**")
+                st.markdown('<div class="prompt-box">', unsafe_allow_html=True)
+                st.markdown(prompt_content)
+                st.markdown('</div>', unsafe_allow_html=True)
+                
+                # Botão copiar cada prompt
+                if st.button(f"📋 Copiar Prompt {timestamp}", key=f"copy_prompt_{idx}"):
+                    st.code(prompt_content, language="text")
+                
+                st.markdown("")
         
-        # ===== DESCRIPTION + HASHTAGS JUNTOS =====
-        st.markdown("### 📝 DESCRIPTION + HASHTAGS (Copy & Paste para TikTok)")
-        st.markdown('<div class="description-box">', unsafe_allow_html=True)
-        st.markdown(description_full)
-        st.markdown('</div>', unsafe
+        st.markdown_
