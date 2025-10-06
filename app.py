@@ -1,6 +1,5 @@
 import streamlit as st
 import google.generativeai as genai
-import os
 
 # Configuração da página
 st.set_page_config(
@@ -9,15 +8,60 @@ st.set_page_config(
     layout="wide"
 )
 
+# CSS customizado
+st.markdown("""
+<style>
+    .script-box {
+        background-color: #1E1E1E;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 4px solid #FF0050;
+        margin: 10px 0;
+        position: relative;
+    }
+    .prompt-box {
+        background-color: #2D2D2D;
+        padding: 15px;
+        border-radius: 10px;
+        border-left: 4px solid #00D9FF;
+        margin: 10px 0;
+    }
+    .description-box {
+        background-color: #1E1E1E;
+        padding: 15px;
+        border-radius: 10px;
+        border-left: 4px solid #00FF88;
+        margin: 10px 0;
+    }
+    .copy-btn {
+        background-color: #FF0050;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        margin: 5px 0;
+    }
+    .copy-btn:hover {
+        background-color: #E6004A;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Título
 st.title("🎬 TikTok Script Generator")
 st.markdown("**Gere roteiros virais em inglês + Image Prompts + Descrição + Hashtags**")
 
-# Sidebar para API Key
+# Sidebar
 with st.sidebar:
     st.header("⚙️ Configuração")
     api_key = st.text_input("Google Gemini API Key", type="password", help="Cole sua API key aqui")
     st.markdown("[📖 Como pegar API Key](https://aistudio.google.com/apikey)")
+    
+    st.markdown("---")
+    st.markdown("### 📏 Especificações")
+    st.info("✅ Script: 1300-1500 caracteres\n\n✅ Estilo: Viral\n\n✅ Público: Americano\n\n✅ Duração: ~60 segundos")
 
 # Inputs principais
 col1, col2 = st.columns([1, 1])
@@ -26,14 +70,14 @@ with col1:
     tema = st.text_area(
         "📝 Tema (em português)",
         placeholder="Ex: A história sombria por trás do McDonald's",
-        height=100
+        height=150
     )
 
 with col2:
     roteiro_exemplo = st.text_area(
         "📄 Roteiro Pronto (opcional)",
         placeholder="Se já tem um roteiro em português, cole aqui. Caso contrário, deixe vazio.",
-        height=100
+        height=150
     )
 
 # Botão de geração
@@ -62,47 +106,45 @@ TAREFA: Pegue este roteiro em português e faça:
 ROTEIRO ORIGINAL (português):
 {roteiro_exemplo}
 
-ENTREGUE:
+REGRAS IMPORTANTES:
+- O SCRIPT deve ter EXATAMENTE entre 1300-1500 caracteres (OBRIGATÓRIO)
+- Se ficar curto, adicione mais detalhes, exemplos, ou expanda a narrativa
+- Se ficar longo, não corte conteúdo importante, apenas seja mais conciso
 
-1. **SCRIPT EM INGLÊS** (1300-1500 caracteres):
-   - Tradução adaptada para público americano
-   - Linguagem simples e conversacional
-   - Formatado para ElevenLabs com marcações de pausa [PAUSE], ênfase [EMPHASIS], etc
-   - Gancho viral nos primeiros 3 segundos
+ENTREGUE EXATAMENTE NESTE FORMATO:
 
-2. **IMAGE PROMPTS** (para cada trecho de 5-10 segundos):
-   - Prompts detalhados para geração de imagens/vídeo
-   - Formato: "0-5s: [prompt]", "5-12s: [prompt]"
-   - Cinematográfico e chamativo
+SCRIPT|||
+[Script completo aqui em inglês, formatado para ElevenLabs com marcações [PAUSE], [EMPHASIS], [BREATH], etc. Gancho viral nos primeiros 3 segundos. Linguagem simples e conversacional. DEVE TER 1300-1500 CARACTERES]
 
-3. **DESCRIPTION** (para TikTok):
-   - 150-200 caracteres
-   - Call-to-action americano
-   - Engajante
+PROMPTS|||
+0-5s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-4. **HASHTAGS**:
-   - 8-10 hashtags trending nos EUA
-   - Mix de virais e nichos
+5-10s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-FORMATE A RESPOSTA EXATAMENTE ASSIM:
+10-15s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-🎙️ SCRIPT (ElevenLabs Ready)
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-[script aqui com marcações]
+15-20s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-🎨 IMAGE PROMPTS
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-0-5s: [prompt]
-5-12s: [prompt]
-[continue...]
+20-25s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-📝 DESCRIPTION
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-[descrição aqui]
+25-30s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
 
-#️⃣ HASHTAGS
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-[hashtags aqui]
+30-35s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+
+35-40s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+
+40-45s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+
+45-50s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+
+50-55s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+
+55-60s: Cinematic [descrição ULTRA detalhada da cena: composição, lighting, camera angle, mood, colors, textures, movement]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading.
+
+DESCRIPTION|||
+[Descrição de 150-200 caracteres para TikTok, engajante, com call-to-action americano]
+
+[8-10 hashtags trending nos EUA separados por espaço, mix de virais e específicos do tema]
 """
         else:
             prompt = f"""
@@ -110,48 +152,46 @@ Você é um especialista em criar conteúdo VIRAL para TikTok voltado para o pú
 
 TEMA (em português): {tema}
 
-CRIE UM ROTEIRO COMPLETO:
+REGRAS IMPORTANTES:
+- O SCRIPT deve ter EXATAMENTE entre 1300-1500 caracteres (OBRIGATÓRIO)
+- Crie um roteiro COMPLETO e DETALHADO
+- Se precisar, adicione contexto, exemplos, curiosidades para atingir o tamanho mínimo
+- Estilo VIRAL: gancho forte, curiosidade, storytelling impactante
 
-1. **SCRIPT EM INGLÊS** (1300-1500 caracteres):
-   - Estilo VIRAL (gancho forte, curiosidade, storytelling)
-   - Linguagem simples para público americano
-   - Formatado para ElevenLabs com marcações [PAUSE], [EMPHASIS], etc
-   - Gancho viral nos primeiros 3 segundos
-   - Duração: ~60 segundos
+ENTREGUE EXATAMENTE NESTE FORMATO:
 
-2. **IMAGE PROMPTS** (para cada trecho de 5-10 segundos):
-   - Prompts detalhados para geração de imagens/vídeo
-   - Formato: "0-5s: [prompt]", "5-12s: [prompt]"
-   - Cinematográfico e impactante
+SCRIPT|||
+[Script completo aqui em inglês, formatado para ElevenLabs com marcações [PAUSE], [EMPHASIS], [BREATH], etc. Gancho viral nos primeiros 3 segundos. Linguagem simples e conversacional para público americano. DEVE TER 1300-1500 CARACTERES]
 
-3. **DESCRIPTION** (para TikTok):
-   - 150-200 caracteres
-   - Call-to-action americano
-   - Engajante e clicável
+PROMPTS|||
+0-5s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting (ex: golden hour, neon, dramatic shadows), camera angle preciso (ex: low angle, dutch tilt, POV), mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico se aplicável: film noir, cyberpunk, vintage 70s, etc].
 
-4. **HASHTAGS**:
-   - 8-10 hashtags trending nos EUA
-   - Mix de virais (#fyp, #viral) e específicos do tema
+5-10s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
 
-FORMATE A RESPOSTA EXATAMENTE ASSIM:
+10-15s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
 
-🎙️ SCRIPT (ElevenLabs Ready)
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-[script aqui com marcações]
+15-20s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
 
-🎨 IMAGE PROMPTS
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-0-5s: [prompt]
-5-12s: [prompt]
-[continue...]
+20-25s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
 
-📝 DESCRIPTION
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-[descrição aqui]
+25-30s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
 
-#️⃣ HASHTAGS
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-[hashtags aqui]
+30-35s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+
+35-40s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+
+40-45s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+
+45-50s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+
+50-55s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+
+55-60s: Cinematic [descrição ULTRA detalhada da cena: composição específica, tipo de lighting, camera angle preciso, mood/atmosfera, paleta de cores específica, texturas visíveis, movimento de câmera]. Hyper-realistic, 4K quality, dramatic lighting, professional color grading, [estilo específico].
+
+DESCRIPTION|||
+[Descrição de 150-200 caracteres para TikTok, engajante e clicável, com call-to-action americano forte]
+
+[8-10 hashtags trending nos EUA separados por espaço, incluindo #fyp #viral e específicos do tema]
 """
         
         # Gerar com loading
@@ -159,30 +199,50 @@ FORMATE A RESPOSTA EXATAMENTE ASSIM:
             response = model.generate_content(prompt)
             resultado = response.text
         
-        # Exibir resultado
+        # Parse do resultado
+        try:
+            partes = resultado.split("|||")
+            
+            script = partes[1].strip() if len(partes) > 1 else ""
+            prompts_raw = partes[2].strip() if len(partes) > 2 else ""
+            description_full = partes[3].strip() if len(partes) > 3 else ""
+            
+            # Separar prompts por linha
+            prompts_list = [p.strip() for p in prompts_raw.split('\n') if p.strip()]
+            
+        except:
+            st.error("Erro ao processar resposta. Tentando novamente...")
+            st.stop()
+        
+        # Contador de caracteres
+        char_count = len(script)
+        
+        # Validação do tamanho
+        if char_count < 1300:
+            st.warning(f"⚠️ Script muito curto ({char_count} chars). Gerando novamente...")
+            st.rerun()
+        elif char_count > 1500:
+            st.warning(f"⚠️ Script muito longo ({char_count} chars). Ajustando...")
+            script = script[:1500].rsplit('.', 1)[0] + '.'
+            char_count = len(script)
+        
+        # Exibir resultado formatado
         st.success("✅ Conteúdo gerado com sucesso!")
+        
+        # Métricas
+        col_counter1, col_counter2, col_counter3 = st.columns(3)
+        with col_counter1:
+            st.metric("📊 Caracteres do Script", f"{char_count}", 
+                     delta=f"{char_count - 1300} do mínimo" if char_count < 1400 else "Perfeito!")
+        with col_counter2:
+            st.metric("⏱️ Duração Estimada", "~60s")
+        with col_counter3:
+            status = "✅ Aprovado" if 1300 <= char_count <= 1500 else "⚠️ Fora do range"
+            st.metric("Status", status)
+        
         st.markdown("---")
-        st.markdown(resultado)
         
-        # Botão de download
-        st.download_button(
-            label="📥 Download do Conteúdo",
-            data=resultado,
-            file_name="tiktok_script.txt",
-            mime="text/plain",
-            use_container_width=True
-        )
+        # ===== SCRIPT COM BOTÃO DE COPIAR =====
+        st.markdown("### 🎙️ SCRIPT (ElevenLabs Ready)")
         
-        # Contador de caracteres do script
-        if "SCRIPT" in resultado:
-            script_text = resultado.split("🎨 IMAGE PROMPTS")[0]
-            char_count = len(script_text.split("━━━━━━━━━━━━━━━━━━━━━━━━━━")[1].strip())
-            st.info(f"📊 Script tem **{char_count} caracteres** (ideal: 1300-1500)")
-    
-    except Exception as e:
-        st.error(f"❌ Erro: {str(e)}")
-        st.info("💡 Verifique se sua API Key está correta")
-
-# Footer
-st.markdown("---")
-st.markdown("Made with ❤️ for viral TikTok content | Powered by Google Gemini")
+        col_script, col_copy
