@@ -1,6 +1,5 @@
 import streamlit as st
 import google.generativeai as genai
-import os
 
 st.set_page_config(page_title="TikTok Script Generator", page_icon="🎬", layout="wide")
 
@@ -47,7 +46,7 @@ with col1:
     tema = st.text_area("📝 Tema (em português)", placeholder="Ex: A história sombria por trás do McDonald's", height=100)
 
 with col2:
-    roteiro_exemplo = st.text_area("📄 Roteiro Pronto (opcional)", placeholder="Se já tem um roteiro em português, cole aqui. Caso contrário, deixe vazio.", height=100)
+    roteiro_exemplo = st.text_area("📄 Roteiro Pronto (opcional)", placeholder="Se já tem um roteiro em português, cole aqui.", height=100)
 
 if st.button("🚀 Gerar Conteúdo Completo", type="primary", use_container_width=True):
     
@@ -63,85 +62,59 @@ if st.button("🚀 Gerar Conteúdo Completo", type="primary", use_container_widt
         genai.configure(api_key=api_key)
         model = genai.GenerativeModel('gemini-2.0-flash-exp')
         
-        if roteiro_exemplo:
-            prompt = f"""Você é um especialista em criar conteúdo viral para TikTok voltado para o público AMERICANO.
+        base_content = roteiro_exemplo if roteiro_exemplo else tema
+        content_type = "ROTEIRO ORIGINAL (português)" if roteiro_exemplo else "TEMA (português)"
+        
+        prompt = f"""Você é um especialista em criar conteúdo VIRAL para TikTok voltado para o público AMERICANO.
 
-ROTEIRO ORIGINAL (português):
-{roteiro_exemplo}
+{content_type}: {base_content}
 
-REGRAS: O SCRIPT deve ter EXATAMENTE entre 1300-1500 caracteres (OBRIGATÓRIO). Se ficar curto, adicione mais detalhes.
+REGRAS IMPORTANTES:
+- O SCRIPT deve ter EXATAMENTE entre 1300-1500 caracteres (OBRIGATÓRIO)
+- Crie conteúdo COMPLETO e DETALHADO
+- Estilo VIRAL com gancho forte nos primeiros 3 segundos
 
-FORMATE EXATAMENTE ASSIM:
+ENTREGUE NO FORMATO:
 
-🎙️ SCRIPT (ElevenLabs Ready)
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-[Script em inglês com marcações [PAUSE], [EMPHASIS], [BREATH]. Gancho viral nos primeiros 3 segundos. 1300-1500 CARACTERES]
+SCRIPT|||
+[Script completo em inglês formatado para ElevenLabs com marcações [PAUSE], [EMPHASIS], [BREATH]. Linguagem simples conversacional. 1300-1500 CARACTERES OBRIGATÓRIO]
 
-🎨 IMAGE PROMPTS
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-0-5s: Cinematic [descrição ULTRA detalhada: composição (rule of thirds/centered), lighting (golden hour/neon/rim lighting/shadows), camera angle (low angle/bird's eye/dutch tilt), mood (tense/mysterious), cores (warm amber/cold blue), texturas (grainy/smooth), movimento (zoom in/dolly)]. Hyper-realistic, 4K.
-5-10s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-10-15s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-15-20s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-20-25s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-25-30s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-30-35s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-35-40s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-40-45s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-45-50s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-50-55s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-55-60s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
+PROMPTS|||
+0-5s: Cinematic [descrição ultra detalhada: composição específica, lighting detalhado, camera angle preciso, mood, cores específicas, texturas, movimento de câmera]. Hyper-realistic, 4K quality, professional color grading.
+5-10s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K quality.
+10-15s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K quality.
+15-20s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K quality.
+20-25s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K quality.
+25-30s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K quality.
+30-35s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K quality.
+35-40s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K quality.
+40-45s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K quality.
+45-50s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K quality.
+50-55s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K quality.
+55-60s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K quality.
 
-📝 DESCRIPTION + HASHTAGS
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-[Descrição 150-200 caracteres, call-to-action americano]
+DESCRIPTION|||
+[Descrição 150-200 caracteres engajante com call-to-action americano forte]
 
-[8-10 hashtags trending EUA incluindo #fyp #viral]"""
-        else:
-            prompt = f"""Você é um especialista em criar conteúdo VIRAL para TikTok voltado para o público AMERICANO.
-
-TEMA (português): {tema}
-
-REGRAS: O SCRIPT deve ter EXATAMENTE entre 1300-1500 caracteres (OBRIGATÓRIO). Crie conteúdo COMPLETO e DETALHADO.
-
-FORMATE EXATAMENTE ASSIM:
-
-🎙️ SCRIPT (ElevenLabs Ready)
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-[Script viral em inglês com marcações [PAUSE], [EMPHASIS], [BREATH]. Gancho forte nos primeiros 3 segundos. Linguagem simples. 1300-1500 CARACTERES]
-
-🎨 IMAGE PROMPTS
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-0-5s: Cinematic [descrição ULTRA detalhada: composição (rule of thirds/centered), lighting (golden hour/neon/rim lighting/shadows), camera angle (low angle/bird's eye/dutch tilt), mood (tense/mysterious), cores (warm amber/cold blue), texturas (grainy/smooth), movimento (zoom in/dolly)]. Hyper-realistic, 4K.
-5-10s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-10-15s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-15-20s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-20-25s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-25-30s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-30-35s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-35-40s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-40-45s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-45-50s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-50-55s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-55-60s: Cinematic [descrição ultra detalhada completa]. Hyper-realistic, 4K.
-
-📝 DESCRIPTION + HASHTAGS
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-[Descrição 150-200 caracteres engajante, call-to-action forte]
-
-[8-10 hashtags trending EUA incluindo #fyp #viral e específicos do tema]"""
+[8-10 hashtags trending EUA incluindo #fyp #viral e específicos do tema, separados por espaço]
+"""
         
         with st.spinner("🤖 Gerando seu conteúdo viral..."):
             response = model.generate_content(prompt)
             resultado = response.text
         
-        try:
-            script_text = resultado.split("🎨 IMAGE PROMPTS")[0].split("━━━━━━━━━━━━━━━━━━━━━━━━━━")[1].strip()
-            prompts_section = resultado.split("🎨 IMAGE PROMPTS")[1].split("📝 DESCRIPTION + HASHTAGS")[0].split("━━━━━━━━━━━━━━━━━━━━━━━━━━")[1].strip()
-            description_section = resultado.split("📝 DESCRIPTION + HASHTAGS")[1].split("━━━━━━━━━━━━━━━━━━━━━━━━━━")[1].strip()
-        except:
-            st.error("❌ Erro ao processar resposta. Tentando novamente...")
+        st.write("DEBUG - Resposta recebida:", resultado[:200])
+        
+        partes = resultado.split("|||")
+        
+        if len(partes) < 4:
+            st.error("❌ Formato de resposta inválido. Tentando novamente...")
+            st.write("DEBUG - Número de partes:", len(partes))
             st.stop()
+        
+        script_text = partes[1].strip()
+        prompts_text = partes[2].strip()
+        description_text = partes[3].strip()
         
         char_count = len(script_text)
         
@@ -154,99 +127,61 @@ FORMATE EXATAMENTE ASSIM:
         
         st.success("✅ Conteúdo gerado com sucesso!")
         
-        col_counter1, col_counter2, col_counter3 = st.columns(3)
-        with col_counter1:
-            st.metric("📊 Caracteres do Script", f"{char_count}", delta=f"{char_count - 1300} do mínimo" if char_count < 1400 else "Perfeito!")
-        with col_counter2:
-            st.metric("⏱️ Duração Estimada", "~60s")
-        with col_counter3:
-            status = "✅ Aprovado" if 1300 <= char_count <= 1500 else "⚠️ Fora do range"
-            st.metric("Status", status)
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("📊 Caracteres", f"{char_count}")
+        with col2:
+            st.metric("⏱️ Duração", "~60s")
+        with col3:
+            st.metric("Status", "✅ Aprovado" if 1300 <= char_count <= 1500 else "⚠️ Revisar")
         
         st.markdown("---")
-        
         st.markdown("### 🎙️ SCRIPT (ElevenLabs Ready)")
         st.markdown('<div class="script-box">', unsafe_allow_html=True)
         st.markdown(script_text.replace("[PAUSE]", "**[PAUSE]**").replace("[EMPHASIS]", "**[EMPHASIS]**").replace("[BREATH]", "**[BREATH]**"))
         st.markdown('</div>', unsafe_allow_html=True)
-        
-        with st.expander("📋 Clique para copiar o Script"):
-            st.code(script_text, language="text")
+        st.code(script_text, language="text")
         
         st.markdown("---")
+        st.markdown("### 🎨 IMAGE PROMPTS")
         
-        st.markdown("### 🎨 IMAGE PROMPTS (Sincronizados por Tempo)")
+        prompts_lines = [line.strip() for line in prompts_text.split('\n') if line.strip()]
         
-        prompts_lines = [line.strip() for line in prompts_section.split('\n') if line.strip()]
-        
-        for idx, prompt_line in enumerate(prompts_lines):
+        for prompt_line in prompts_lines:
             if ':' in prompt_line:
                 parts = prompt_line.split(':', 1)
                 timestamp = parts[0].strip()
-                prompt_content = parts[1].strip()
+                content = parts[1].strip()
                 
                 st.markdown(f"**⏱️ {timestamp}**")
                 st.markdown('<div class="prompt-box">', unsafe_allow_html=True)
-                st.markdown(prompt_content)
+                st.markdown(content)
                 st.markdown('</div>', unsafe_allow_html=True)
-                
-                with st.expander(f"📋 Copiar prompt {timestamp}"):
-                    st.code(prompt_content, language="text")
-                
-                st.markdown("")
+                st.code(content, language="text")
         
         st.markdown("---")
-        
-        st.markdown("### 📝 DESCRIPTION + HASHTAGS (Copy & Paste para TikTok)")
+        st.markdown("### 📝 DESCRIPTION + HASHTAGS")
         st.markdown('<div class="description-box">', unsafe_allow_html=True)
-        st.markdown(description_section)
+        st.markdown(description_text)
         st.markdown('</div>', unsafe_allow_html=True)
+        st.code(description_text, language="text")
         
-        with st.expander("📋 Copiar Description + Hashtags"):
-            st.code(description_section, language="text")
-        
-        texto_completo = f"""🎬 TIKTOK SCRIPT GENERATOR
-{'='*60}
-
-📊 INFORMAÇÕES:
-- Caracteres: {char_count}
-- Duração: ~60 segundos
-- Público: Americano
-- Estilo: Viral
-
-{'='*60}
-
-🎙️ SCRIPT (ElevenLabs Ready)
-{'-'*60}
+        texto_completo = f"""SCRIPT:
 {script_text}
 
-{'='*60}
+IMAGE PROMPTS:
+{prompts_text}
 
-🎨 IMAGE PROMPTS
-{'-'*60}
-{prompts_section}
-
-{'='*60}
-
-📝 DESCRIPTION + HASHTAGS
-{'-'*60}
-{description_section}
-
-{'='*60}
-Generated by TikTok Script Generator
+DESCRIPTION + HASHTAGS:
+{description_text}
 """
         
-        st.download_button(
-            label="📥 Download Conteúdo Completo (.txt)",
-            data=texto_completo,
-            file_name=f"tiktok_script_{char_count}chars.txt",
-            mime="text/plain",
-            use_container_width=True
-        )
+        st.download_button("📥 Download Completo", data=texto_completo, file_name=f"tiktok_{char_count}chars.txt", mime="text/plain")
     
     except Exception as e:
         st.error(f"❌ Erro: {str(e)}")
-        st.info("💡 Verifique se sua API Key está correta ou tente novamente")
+        import traceback
+        st.code(traceback.format_exc())
 
 st.markdown("---")
-st.markdown("Made with ❤️ for viral TikTok content | Powered by Google Gemini 2.0 Flash")
+st.markdown("Made with ❤️ | Powered by Google Gemini 2.0 Flash")
